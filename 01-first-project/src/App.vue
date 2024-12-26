@@ -1,12 +1,18 @@
 <script setup>
   import { computed, ref, reactive } from 'vue';
-  // const isActive = ref(true)
-  // const hasError = ref(false)
+  const isActive = ref(true)
+  const hasError = ref(true)
 
-  const classObject = reactive({
-    active: true,
-    'has-error': true
-  })
+  // const classObject = reactive({
+  //   active: true,
+  //   'has-error': true
+  // })
+
+  const classObject = computed(() => ({
+    active: isActive.value && !hasError.value,
+    'has-error': hasError.value
+  }))
+  
 </script>
 
 <template>
