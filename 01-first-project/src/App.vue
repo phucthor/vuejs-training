@@ -1,85 +1,47 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+  import { computed, ref, reactive } from 'vue';
+  // const isActive = ref(true)
+  // const hasError = ref(false)
+
+  const classObject = reactive({
+    active: true,
+    'has-error': true
+  })
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <div>
+    <button class="button" :class="classObject">Active</button>
+  </div>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<style>
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+  .button {
+    border: none;
+    background: rgb(230, 192, 205);
+    color: rgb(207, 88, 88);
+    padding: 10px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    &:hover {
+      background: rgb(230, 224, 225);
+    }
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
+  .active {
+    background: rgb(208, 94, 253);
+    color: white;
+    &:hover {
+      background: rgb(174, 103, 202);
+    }
   }
 
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+  .has-error {
+    background: rgb(255, 0, 85);
+    color: rgb(255, 255, 255);
+    &:hover {
+      background: rgb(228, 57, 86);
+    }
   }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
-}
 </style>
