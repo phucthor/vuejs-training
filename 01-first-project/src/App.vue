@@ -1,32 +1,38 @@
 <script setup>
 import { computed, ref, reactive } from 'vue'
-const users = ref([
+const todos = reactive([
   {
-    name: 'Tommy',
-    age: 30,
-    isActive: true,
+    id: 1,
+    text: 'Learn Looker'
   },
   {
-    name: 'John',
-    age: 50,
-    isActive: false,
+    id: 2,
+    text: 'Learn how to build a basic app'
   },
-  {
-    name: 'Sou',
-    age: 39,
-    isActive: true,
-  },
+  
 ])
+
+const newTodo = ref('')
+
+const addTodo = () => {
+  if(newTodo.value.trim() === '') return
+  const todo = {
+    id: todos.length + 1,
+    text: newTodo.value
+  }
+  todos.push(todo)
+  newTodo.value = ''
+}
 </script>
 
 <template>
   <div>
+    <input type="text" v-model="newTodo" @keyup.enter="addTodo"/>
+    <button @click="addTodo">Add Todo</button>
     <ul>
-      <template v-for="(user, index) in users" :key="user.name">
-        <li v-if="!user.isActive">
-          {{ user.name }}: {{ user.isActive ? 'Active' : 'Deactive' }} ({{ index }})
+        <li v-for="todo in todos" :key="todo.id">
+          {{ todo.id }}: {{ todo.text}}
         </li>
-      </template>
     </ul>
   </div>
 </template>
