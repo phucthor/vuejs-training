@@ -1,29 +1,32 @@
 <script setup>
 import { computed, ref, reactive } from 'vue'
-const shoppingItems = ref([
+const users = ref([
   {
-    name: 'apple',
-    price: 7
+    name: 'Tommy',
+    age: 30,
+    isActive: true,
   },
   {
-    name: 'orange',
-    price: 12
+    name: 'John',
+    age: 50,
+    isActive: false,
   },
   {
-    name: 'banana',
-    price: 10
-  }
+    name: 'Sou',
+    age: 39,
+    isActive: true,
+  },
 ])
 </script>
 
 <template>
   <div>
     <ul>
-      <li v-for="item in shoppingItems" :key="item.name">
-        {{ item.name }} - {{ item.price }}
-      </li>
+      <template v-for="(user, index) in users" :key="user.name">
+        <li v-if="!user.isActive">
+          {{ user.name }}: {{ user.isActive ? 'Active' : 'Deactive' }} ({{ index }})
+        </li>
+      </template>
     </ul>
-    <span v-for="n in 10" :key="n">{{ n }}</span>
   </div>
-
 </template>
