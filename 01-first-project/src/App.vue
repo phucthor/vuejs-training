@@ -21,17 +21,8 @@ const submit = () => {
 <template>
   <div>
     <h1>Event Handling</h1>
-    <!-- <button @click="sayHi1">
-      <button @click.stop="sayHi2">Say 2</button>
-      Say 1
-    </button> -->
-    <button @click.self="sayHi1">
-      <button @click.self="sayHi2">Say 2</button>
-      Say 1
-    </button>
-    <!-- <form @submit.prevent.stop="submit">
-      <button type="submit">Submit</button>
-    </form> -->
+    <input @keyup.enter.alt="submit" placeholder="Input your name">
+    <button @click.shift="submit">Submit</button>
   </div>
 </template>
 
