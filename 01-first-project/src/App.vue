@@ -10,6 +10,8 @@ const checkedNames = ref([])
 const radioChecked = ref()
 const selected = ref()
 const selectedMultiple = ref([])
+const firstOption = ref("first option")
+const secondOption = ref("second option")
 </script>
 
 <template>
@@ -22,15 +24,13 @@ const selectedMultiple = ref([])
     <textarea v-model="multilineText" placeholder="Input your massage" />
 
     <p>Checkbox: {{ checked }}</p>
-    <input type="checkbox" v-model="checked" />
+    <input type="checkbox" id="a" v-model="checked" true-value="Yes" false-value="No" />
 
-    <p>Checkbox: {{ checkedNames }}</p>
-    <input type="checkbox" id="a" v-model="checkedNames" value="A" />
+    <p>Multiple Checkbox: {{ checkedNames }}</p>
+    <input type="checkbox" id="a" v-model="checkedNames" :value="firstOption" />
     <label for="a">A</label>
-    <input type="checkbox" id="b" v-model="checkedNames" value="B" />
+    <input type="checkbox" id="b" v-model="checkedNames" :value="secondOption" />
     <label for="b">B</label>
-    <input type="checkbox" id="c" v-model="checkedNames" value="C" />
-    <label for="c">C</label>
 
     <p>Radio: {{ radioChecked }}</p>
     <input type="radio" id="a" v-model="radioChecked" value="A" />
@@ -41,7 +41,7 @@ const selectedMultiple = ref([])
     <p>Select: {{ selected }}</p>
     <select v-model="selected">
       <option disabled value="">Please select one</option>
-      <option>A</option>
+      <option :value="{ name: 'A' }">A</option>
       <option>B</option>
       <option>C</option>
     </select>
