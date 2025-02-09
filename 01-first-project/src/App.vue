@@ -17,9 +17,9 @@ const secondOption = ref("second option")
 <template>
   <div>
     <h1>Form Input Binding</h1>
-    <p>Text: {{ text }}</p>
+    <p>Text: {{ text }} {{ typeof text }}</p>
     <!-- <input :value="text" @input="handleInput"/> -->
-    <input v-model="text" />
+    <input v-model.number="text" />
     <p>Multiline Text: {{ multilineText }}</p>
     <textarea v-model="multilineText" placeholder="Input your massage" />
 
