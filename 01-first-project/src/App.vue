@@ -1,28 +1,26 @@
 <script setup>
 import { computed, ref, reactive } from 'vue'
 
-const count = ref(0)
+const text = ref('hi')
 
-const sayHi1 = (name) => {
-  alert(`Xin chao 1`)
-}
+const multilineText = ref('')
 
-const sayHi2 = (name) => {
-  alert(`Xin chao 2`)
-}
-
-const submit = () => {
-  alert("Form submitted")
-}
+// const handleInput = (e) => {
+//   // console.log(e)
+//   text.value = e.target.value
+// }
 </script>
 
 
 
 <template>
   <div>
-    <h1>Event Handling</h1>
-    <input @keyup.enter.alt="submit" placeholder="Input your name">
-    <button @click.shift="submit">Submit</button>
+    <h1>Form Input Binding</h1>
+    <p>Text: {{ text }}</p>
+    <!-- <input :value="text" @input="handleInput"/> -->
+     <input v-model="text">
+     <p>Multiline Text: {{ multilineText }}</p>
+     <textarea v-model="multilineText" placeholder="Input your massage"/>
   </div>
 </template>
 
