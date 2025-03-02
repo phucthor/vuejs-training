@@ -1,31 +1,34 @@
 <script setup>
-import { ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue'
 
-// const count = ref(0);
-// watch(count, (newValue, oldValue) => {
-//   console.log('count changed', newValue, oldValue);
-// });
-const question = ref('')
-const isLoading = ref(false)
-const answer = ref('')
-watch(question, async(newQuestion, oldQuestion) => {
-  if (newQuestion.includes('?')) {
-    isLoading.value = true
-    // setTimeout(() => {
-    //   isLoading.value = false;
-    // }, 2000);
-    answer.value = "Thinking..."
-    try {
-      const response = await fetch('https://yesno.wtf/api')
-      answer.value = (await response.json()).answer
-    } catch (error) {
-      answer.value = `Error: ${error.message}`
-    }
-    finally{
-      isLoading.value = false
-    }
-  }
+const x = ref(0)
+const y = ref(0)
+
+const user = reactive({
+  age: 30
 })
+
+watch(()=> x.value + y.value,
+(sum) => {
+  // console.log(`Sum of x and y is ${sum}`)
+})
+
+watch([x, () => y.value + 1], ([newX, newY]) => {
+  console.log(`x is ${newX}, y is ${newY}`)
+})
+
+watch(user.age, (newAge) => {
+  console.log(`Age is ${newAge}`)
+})
+
+const increment = () => {
+  x.value++;
+  y.value++;
+}
+
+const changeAge = () => {
+  user.age++;
+}
 </script>
 
 <template>
@@ -34,7 +37,11 @@ watch(question, async(newQuestion, oldQuestion) => {
     <button @click="count++">Increment</button> -->
     <h1>Watcher</h1>
     <p>Ask a Yes/No Question</p>
-    <input v-model="question" :disabled="isLoading" />
-    <p>{{ answer }}</p>
+    <button @click="increment">Increment</button>
+    <p>{{ x }}, {{ y }}</p>
+    <button @click="changeAge">Change Age</button>
+    <p>{{ user.age }}</p>
+
+
   </div>
 </template>
